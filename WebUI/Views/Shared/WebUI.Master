@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WebUI.master.cs" Inherits="WebUI.WebUI" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="Stylesheet" href="~/Content/styles.css" />
+    <link rel="Alternate" type="application/rss+xml" title="New SportStore products" 
+          href="<%: Url.Action("Feed", "Rss") %>" />
+</head>
+<body>
+    <div id="header">
+        <div class="cart">
+            <% if (!(ViewContext.Controller is WebUI.Controllers.CartController))
+                   Html.RenderAction("Summary", "Cart"); %>
+        </div>
+        <div class="title">Sport store</div>
+    </div>
+    <div id="categories">
+        <% Html.RenderAction("Menu", "Nav", new { highlightedCategory = ViewData["CurrentCategory"] }); %>
+    </div>
+    <div id="content">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+    <footer>
+        <div class="RSS">
+            <a href='<%: Url.Action("Feed", "Rss") %>'>
+                <img src='<%: Url.Content("~/Content/rsspic.jpg") %>' width=​40 height=40 alt="rss"/>
+            </a>                        
+        </div>
+    </footer>
+</body>
+</html>
