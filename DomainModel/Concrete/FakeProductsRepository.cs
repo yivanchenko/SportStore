@@ -15,8 +15,7 @@ namespace DomainModel.Concrete
             new Product() { Name="Football", Price=25 },
             new Product() { Name="Surf board", Price=40 },
             new Product() { Name="Running shoes", Price=100 }
-        }.AsQueryable();
-        
+        }.AsQueryable();        
 
         public IQueryable<Product> Products
         {
